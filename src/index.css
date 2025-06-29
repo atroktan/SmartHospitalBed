@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset & Layout Defaults */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #ffffff;
+  color: #213547;
+  scroll-behavior: smooth;
+}
+
+/* Improve rendering & font clarity */
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Link defaults */
+a {
+  @apply font-medium text-blue-700 no-underline;
+}
+a:hover {
+  @apply text-blue-900;
+}
+
+/* Button Reset (optional, Tailwind usually handles this) */
+button {
+  @apply rounded px-4 py-2 font-medium transition duration-200;
+}
+button:focus {
+  @apply outline-none ring-2 ring-blue-400;
+}
+
+/* Heading defaults (optional, Tailwind overrides this anyway) */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold text-gray-800;
+}
