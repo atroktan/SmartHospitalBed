@@ -6,6 +6,9 @@ import {
   QrCode,
   ClipboardCheck,
   History,
+  FileText,
+  Stethoscope,
+  Upload,
   LogOut,
 } from 'lucide-react';
 
@@ -14,31 +17,14 @@ function SidebarPerawat() {
   const navigate = useNavigate();
 
   const navItems = [
-    {
-      label: 'Dashboard',
-      path: '/dashboard/perawat',
-      icon: Home,
-    },
-    {
-      label: 'Pasien Dirawat',
-      path: '/dashboard/perawat/pasien',
-      icon: Users,
-    },
-    {
-      label: 'Scan QR Bed',
-      path: '/dashboard/perawat/scanqr',
-      icon: QrCode,
-    },
-    {
-      label: 'Tindakan Hari Ini',
-      path: '/dashboard/perawat/tindakan',
-      icon: ClipboardCheck,
-    },
-    {
-      label: 'Riwayat Pemberian Obat',
-      path: '/dashboard/perawat/obat',
-      icon: History,
-    },
+    { label: 'Dashboard', path: '/dashboard/perawat', icon: Home },
+    { label: 'Pasien Dirawat', path: '/dashboard/perawat/pasien', icon: Users },
+    { label: 'Scan QR Bed', path: '/dashboard/perawat/scanqr', icon: QrCode },
+    { label: 'Tindakan Hari Ini', path: '/dashboard/perawat/tindakan', icon: ClipboardCheck },
+    { label: 'Riwayat Pemberian Obat', path: '/dashboard/perawat/obat', icon: History },
+    { label: 'Rekam Medis Pasien', path: '/dashboard/perawat/rekam-medis', icon: FileText },
+    { label: 'Catatan Diagnosa Dokter', path: '/dashboard/perawat/diagnosa-dokter', icon: Stethoscope },
+    { label: 'Upload Rekam Medis', path: '/dashboard/perawat/upload-medis', icon: Upload },
   ];
 
   const handleLogout = () => {
@@ -73,11 +59,7 @@ function SidebarPerawat() {
                       : 'text-gray-600 hover:bg-gray-100 hover:text-blue-600'
                   }`}
                 >
-                  <Icon
-                    className={`w-5 h-5 mr-3 ${
-                      isActive ? 'text-blue-700' : 'text-gray-500'
-                    }`}
-                  />
+                  <Icon className={`w-5 h-5 mr-3 ${isActive ? 'text-blue-700' : 'text-gray-500'}`} />
                   {item.label}
                 </Link>
               </li>

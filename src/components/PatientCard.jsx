@@ -9,7 +9,7 @@ const getStatus = (bmi) => {
   return { label: 'Obese', color: 'bg-red-100 text-red-600' };
 };
 
-const PatientCard = ({ id, name, bmi, image }) => {
+const PatientCard = ({ id, name, bmi, image, bedNumber }) => {
   const status = getStatus(bmi);
 
   return (
@@ -22,6 +22,13 @@ const PatientCard = ({ id, name, bmi, image }) => {
         <div className={`mt-2 inline-block px-3 py-1 text-sm font-medium rounded-full ${status.color}`}>
           {status.label}
         </div>
+
+        {/* 👇 Tambahan info nomor kasur */}
+        {bedNumber && (
+          <p className="mt-2 text-xs text-gray-500">
+            Kasur #{bedNumber}
+          </p>
+        )}
       </div>
     </Link>
   );

@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 
 const EditProfilePage = () => {
   const [profile, setProfile] = useState({
-    fullName: '',
-    nickName: '',
-    gender: '',
-    country: '',
-    language: '',
-    timeZone: '',
+    username: 'Dr. Farosania Amanda',
+    email: 'farosania23@gmail.com',
+    birthPlaceDate: 'Pasuruan, 10 Agustus 2004',
+    password: 'dr@ocal12',
     image: '/profile.png',
   });
 
-  const handleChange = (e) => {
-    setProfile({ ...profile, [e.target.name]: e.target.value });
+  const handleChange = (field, value) => {
+    setProfile({ ...profile, [field]: value });
   };
 
   const handleImageChange = (e) => {
@@ -27,22 +25,32 @@ const EditProfilePage = () => {
   };
 
   return (
-    <div className="p-2 bg-gray-100 min-h-screen">
-      <h1 className="text-2xl font-semibold text-gray-800 mb-2">
-        Welcome, <span className="text-blue-800">Dr. Dyata Lintar Akbar</span>
-      </h1>
-      <p className="text-gray-500 mb-6">You’re Vibes, You’re Rules</p>
+    <div className="p-6 bg-gray-100 min-h-screen">
+     <div className="flex items-center gap-3 mb-6">
+  <button
+    onClick={() => window.history.back()} // atau gunakan navigate(-1) dari React Router
+    className="flex items-center justify-center w-9 h-9 rounded-full border border-blue-500 text-blue-600 hover:bg-blue-100 transition"
+    aria-label="Kembali"
+  >
+    ←
+  </button>
+  <h1 className="text-2xl font-semibold text-gray-800">Edit Profil</h1>
+</div>
 
-      <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
-        {/* FOTO + Tambah Foto */}
-        <div className="flex items-center space-x-4">
-          <div className="relative">
+
+
+      <div className="bg-white rounded-2xl shadow-lg p-6 md:p-10">
+        <h2 className="text-xl font-bold mb-6 text-gray-800">Edit Profil</h2>
+
+        {/* FOTO PROFIL */}
+        <div className="flex items-center space-x-4 mb-6">
+          <div className="relative w-20 h-20">
             <img
               src={profile.image}
               className="w-20 h-20 rounded-full object-cover border"
               alt="Profile"
             />
-            <label className="absolute bottom-0 right-0 bg-blue-600 text-white p-2 rounded-full cursor-pointer text-xs">
+            <label className="absolute bottom-0 right-0 bg-blue-600 text-white p-1.5 rounded-full cursor-pointer text-xs">
               +
               <input
                 type="file"
@@ -53,74 +61,37 @@ const EditProfilePage = () => {
             </label>
           </div>
           <div>
-            <p className="font-semibold text-lg">Dyata Lintar Akbar</p>
-            <p className="text-gray-500 text-sm">dyatalintar321@gmail.com</p>
+            <p className="font-semibold text-lg">Dr. Farosania A.</p>
+            <p className="text-gray-500 text-sm">farosania23@gmail.com</p>
           </div>
         </div>
 
-        {/* FORM INPUT */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input
-            type="text"
-            name="fullName"
-            placeholder="Full Name"
-            className="p-3 border rounded-lg"
-            value={profile.fullName}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="nickName"
-            placeholder="Nick Name"
-            className="p-3 border rounded-lg"
-            value={profile.nickName}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="gender"
-            placeholder="Gender"
-            className="p-3 border rounded-lg"
-            value={profile.gender}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="country"
-            placeholder="Country"
-            className="p-3 border rounded-lg"
-            value={profile.country}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="language"
-            placeholder="Language"
-            className="p-3 border rounded-lg"
-            value={profile.language}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="timeZone"
-            placeholder="Time Zone"
-            className="p-3 border rounded-lg"
-            value={profile.timeZone}
-            onChange={handleChange}
-          />
+        {/* INPUT FIELD */}
+        <div className="space-y-5">
+          {[
+            { label: 'Username', field: 'username' },
+            { label: 'Email', field: 'email' },
+            { label: 'Tempat Tanggal Lahir', field: 'birthPlaceDate' },
+            { label: 'Password', field: 'password' },
+          ].map(({ label, field }) => (
+            <div key={field}>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">{label}</label>
+              <div className="flex items-center border rounded-md p-2 justify-between bg-gray-50">
+                <input
+                  type={field === 'password' ? 'password' : 'text'}
+                  className="bg-transparent w-full focus:outline-none"
+                  value={profile[field]}
+                  onChange={(e) => handleChange(field, e.target.value)}
+                />
+                <button className="text-blue-600 text-sm hover:underline ml-4">ubah</button>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* EMAIL */}
-        <div>
-          <p className="text-sm text-gray-500">My Email Address</p>
-          <p className="text-gray-800 font-medium mt-1">dyatalintar321@gmail.com</p>
-          <p className="text-gray-400 text-xs">1 month ago</p>
-          <button className="text-blue-600 text-sm mt-2 hover:underline">+Add Email Address</button>
-        </div>
-
-        {/* BUTTON */}
-        <div className="text-right">
-          <button className="bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+        {/* SAVE BUTTON */}
+        <div className="flex justify-end mt-10">
+          <button className="bg-blue-800 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full shadow-md">
             Save Changes
           </button>
         </div>

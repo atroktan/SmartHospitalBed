@@ -2,7 +2,8 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   Home, User, Activity, ClipboardList,
-  BellRing, Upload, FileText, LogOut
+  BellRing, Upload, FileText, LogOut,
+  Calendar, Stethoscope, Pill
 } from 'lucide-react';
 
 function SidebarDokter() {
@@ -11,11 +12,18 @@ function SidebarDokter() {
 
   const navItems = [
     { label: 'Dashboard', path: '/dashboard', icon: <Home className="w-5 h-5 mr-3" /> },
+
     { type: 'label', label: 'DATA PASIEN' },
     { label: 'Pasien Saya', path: '/dashboard/patient', icon: <User className="w-5 h-5 mr-3" /> },
     { label: 'Status Medis', path: '/dashboard/sensor', icon: <Activity className="w-5 h-5 mr-3" /> },
     { label: 'Riwayat Pasien', path: '/dashboard/history', icon: <ClipboardList className="w-5 h-5 mr-3" /> },
     { label: 'Notifikasi Darurat', path: '/dashboard/alert', icon: <BellRing className="w-5 h-5 mr-3" /> },
+
+    { type: 'label', label: 'KONSULTASI & ANALISIS' },
+    { label: 'Jadwal Konsultasi', path: '/dashboard/jadwal', icon: <Calendar className="w-5 h-5 mr-3" /> },
+    { label: 'Diagnosa & Rekomendasi', path: '/dashboard/diagnosa', icon: <Stethoscope className="w-5 h-5 mr-3" /> },
+    { label: 'Catatan Obat Pasien', path: '/dashboard/obatpasien', icon: <Pill className="w-5 h-5 mr-3" /> },
+
     { type: 'label', label: 'DOKUMENTASI' },
     { label: 'Upload Penanganan', path: '/dashboard/upload', icon: <Upload className="w-5 h-5 mr-3" /> },
     { label: 'Artikel Medis', path: '/dashboard/articles', icon: <FileText className="w-5 h-5 mr-3" /> },
@@ -28,7 +36,6 @@ function SidebarDokter() {
 
   return (
     <div className="w-64 bg-white shadow-md flex flex-col fixed top-0 left-0 h-screen pt-6 z-50">
-      {/* Logo Text */}
       <div className="flex flex-col items-center justify-center mb-8 px-6 text-center leading-tight">
         <Link to="/">
           <h1 className="text-2xl font-bold text-blue-800 tracking-tight leading-snug">SMART</h1>
@@ -36,7 +43,6 @@ function SidebarDokter() {
         </Link>
       </div>
 
-      {/* Navigation Menu */}
       <nav className="flex-1 py-4 overflow-y-auto">
         <ul>
           {navItems.map((item) => {
@@ -68,7 +74,6 @@ function SidebarDokter() {
         </ul>
       </nav>
 
-      {/* Logout Button */}
       <div className="p-4 border-t mt-auto">
         <button
           onClick={handleLogout}
